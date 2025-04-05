@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liquid Background</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #00c9ff, #92fe9d);
+      font-family: sans-serif;
+    }
+
+    .gooey-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      filter: url(#gooey);
+      z-index: 0;
+    }
+
+    .blob {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: #ffffff88;
+      border-radius: 50%;
+      animation: blobMove 10s ease-in-out infinite;
+    }
+
+    .blob:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+      left: 30%;
+      animation-delay: 2s;
+    }
+
+    .blob:nth-child(3) {
+      width: 180px;
+      height: 180px;
+      top: 70%;
+      left: 60%;
+      animation-delay: 4s;
+    }
+
+    .blob:nth-child(4) {
+      width: 130px;
+      height: 130px;
+      top: 20%;
+      left: 70%;
+      animation-delay: 6s;
+    }
+
+    @keyframes blobMove {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(50px, 50px) scale(1.2); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Liquid blobs -->
+  <div class="gooey-container">
+    <div class="blob" style="top: 10%; left: 10%;"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+
+    <svg width="0" height="0">
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  
+                  0 1 0 0 0  
+                  0 0 1 0 0  
+                  0 0 0 20 -10" result="gooey" />
+        <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+      </filter>
+    </svg>
+  </div>
+
+  <!-- Text Content -->
+  <div class="content">
+  
+  </div>
+
+</body>
+</html>
